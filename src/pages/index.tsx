@@ -1,15 +1,20 @@
-import LinkWrapper from 'components/LinkWrapper';
-import { InfoOutline } from '@styled-icons/evaicons-outline/InfoOutline';
+import client from 'graphql/client';
+import { MapProps } from 'components/Map';
+import { GetPlacesQuery } from 'graphql/generated/graphql';
+import { GET_PLACES } from 'graphql/queries';
 
-import Main from 'components/Main';
+import HomeTemplate from 'templates/Home';
 
-export default function Home() {
-  return (
-    <>
-      <LinkWrapper href="/about">
-        <InfoOutline size={32} aria-label="About" />
-      </LinkWrapper>
-      <Main />
-    </>
-  );
+export default function Home({ places }: MapProps) {
+  return <HomeTemplate places={places} />;
 }
+
+export const getStaticProps = async () => {
+  const { places } = await client.request<GetPlacesQuery>(GET_PLACES);
+
+  return {
+    props: {
+      places
+    }
+  };
+};
