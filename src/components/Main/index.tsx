@@ -1,7 +1,30 @@
+import dynamic from 'next/dynamic';
+
+const Map = dynamic(() => import('components/Map'), { ssr: false });
+
 const Main = () => (
-  <main>
-    <h1>Local Music</h1>
-  </main>
+  <Map
+    places={[
+      {
+        id: '2',
+        name: 'Aracaju',
+        slug: 'aracaju',
+        location: {
+          latitude: 1,
+          longitude: 2
+        }
+      },
+      {
+        id: '3',
+        name: 'Aracaju',
+        slug: 'aracaju',
+        location: {
+          latitude: 2,
+          longitude: 1
+        }
+      }
+    ]}
+  />
 );
 
 export default Main;
