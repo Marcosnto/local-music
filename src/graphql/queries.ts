@@ -26,9 +26,9 @@ export const GET_PAGE_BY_SLUG = gql`
   }
 `;
 
-export const GET_PLACES = gql`
-  query getPlaces {
-    places {
+export const GET_ARTISTS = gql`
+  query getArtists($first: Int) {
+    artists(first: $first) {
       id
       slug
       name
@@ -43,6 +43,27 @@ export const GET_PLACES = gql`
         url
         height
         width
+      }
+    }
+  }
+`;
+
+export const GET_ARTIST_BY_SLUG = gql`
+  query getArtistBySlug($slug: String!) {
+    artist(where: { slug: $slug }) {
+      name
+      slug
+      location {
+        latitude
+        longitude
+      }
+      description {
+        html
+      }
+      gallery {
+        height
+        width
+        url
       }
     }
   }

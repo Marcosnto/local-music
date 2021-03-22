@@ -1,6 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
-type Place = {
+type Artist = {
   id: string;
   name: string;
   slug: string;
@@ -11,10 +11,10 @@ type Place = {
 };
 
 export type MapProps = {
-  places?: Place[];
+  artists?: Artist[];
 };
 
-const Map = ({ places }: MapProps) => (
+const Map = ({ artists }: MapProps) => (
   <MapContainer
     center={[51.505, -0.09]}
     zoom={3}
@@ -24,7 +24,7 @@ const Map = ({ places }: MapProps) => (
       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     />
-    {places?.map(({ id, name, location }) => {
+    {artists?.map(({ id, name, location }) => {
       const { latitude, longitude } = location;
       return (
         <Marker

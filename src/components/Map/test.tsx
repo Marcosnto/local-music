@@ -13,28 +13,28 @@ describe('<Map />', () => {
   });
 
   it('should render with the marker in correct place', () => {
-    const place = {
+    const artist1 = {
       id: '1',
-      name: 'Petrópolis',
-      slug: 'petropolis',
+      name: 'Pabllo Vittar',
+      slug: 'pabllo-vittar',
       location: {
         latitude: 0,
         longitude: 0
       }
     };
-    const place2 = {
+    const artist2 = {
       id: '2',
-      name: 'Aracaju',
-      slug: 'aracaju',
+      name: 'Gloria Groove',
+      slug: 'gloria-groove',
       location: {
         latitude: 1,
         longitude: 2
       }
     };
 
-    render(<Map places={[place, place2]} />);
+    render(<Map artists={[artist1, artist2]} />);
 
-    expect(screen.getByTitle(/petrópolis/i)).toBeInTheDocument();
-    expect(screen.getByTitle(/aracaju/i)).toBeInTheDocument();
+    expect(screen.getByTitle(/pabllo vittar/i)).toBeInTheDocument();
+    expect(screen.getByTitle(/gloria groove/i)).toBeInTheDocument();
   });
 });
