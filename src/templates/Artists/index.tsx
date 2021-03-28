@@ -1,3 +1,11 @@
+import Image from 'next/image';
+
+import LinkWrapper from 'components/LinkWrapper';
+import { CloseOutline } from '@styled-icons/evaicons-outline/CloseOutline';
+
+import * as S from './styles';
+import { useRouter } from 'next/dist/client/router';
+
 type ImageProps = {
   url: string;
   height: number;
@@ -8,7 +16,7 @@ export type ArtistTemplateProps = {
   artist: {
     slug: string;
     name: string;
-    description: {
+    description?: {
       html: string;
     };
     gallery: ImageProps[];
@@ -16,13 +24,35 @@ export type ArtistTemplateProps = {
 };
 
 export default function ArtistTemplate({ artist }: ArtistTemplateProps) {
+  const router = useRouter();
+
+  if (router.isFallback) return null;
+
   return (
     <>
-      <h1>{artist.name}</h1>
-      <div dangerouslySetInnerHTML={{ __html: artist.description.html }} />
-      {artist.gallery.map((image, index) => (
-        <img key={`photo-${index}`} src={image.url} alt={artist.name} />
-      ))}
+      <LinkWrapper href="/">
+        <CloseOutline size={32} aria-label="Go Back to map" />
+      </LinkWrapper>
+      <S.Wrapper>
+        <S.Container>
+          <S.Heading>{artist.name}</S.Heading>
+          <S.Body
+            dangerouslySetInnerHTML={{ __html: artist.description?.html || '' }}
+          />
+          <S.Gallery>
+            {artist.gallery.map((image, index) => (
+              <Image
+                key={`photo-${index}`}
+                src={image.url}
+                alt={artist.name}
+                width={1000}
+                height={600}
+                quality={75}
+              />
+            ))}
+          </S.Gallery>
+        </S.Container>
+      </S.Wrapper>
     </>
   );
 }
