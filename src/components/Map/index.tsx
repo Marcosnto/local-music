@@ -18,9 +18,10 @@ export type MapProps = {
 const Map = ({ artists }: MapProps) => {
   /* those variables need to be able on client-side, for that we pass
   with NEXT_PUBLIC */
-  const MAPBOX_API_KEY = process.env.NEXT_PUBLIC_MAPBOX_API_KEY;
   const MAPBOX_USERID = process.env.NEXT_PUBLIC_MAPBOX_USERID;
   const MAPBOX_STYLEID = process.env.NEXT_PUBLIC_MAPBOX_STYLEID;
+  // const MAPBOX_API_KEY = process.env.NEXT_PUBLIC_MAPBOX_API_KEY;
+  const MAPBOX_API_KEY = null;
 
   const router = useRouter();
 

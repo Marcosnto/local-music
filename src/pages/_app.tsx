@@ -1,6 +1,7 @@
 // import App from "next/app";
 import type { AppProps /*, AppContext */ } from 'next/app';
 import Head from 'next/head';
+import NextNprogress from 'nextjs-progressbar';
 
 import GlobalStyles from 'styles/global';
 
@@ -18,6 +19,13 @@ function App({ Component, pageProps }: AppProps) {
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           crossOrigin=""
         />
+
+        <script src="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+        <link
+          href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css"
+          rel="stylesheet"
+        />
+
         <meta name="theme-color" content="#06092B" />
         <meta
           name="description"
@@ -25,6 +33,12 @@ function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <GlobalStyles />
+      <NextNprogress
+        color="#e20e8d"
+        startPosition={0.3}
+        stopDelayMs={200}
+        height={6}
+      />
       <Component {...pageProps} />
     </>
   );
