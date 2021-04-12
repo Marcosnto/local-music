@@ -18,26 +18,27 @@ export type MapProps = {
 const Map = ({ artists }: MapProps) => {
   /* those variables need to be able on client-side, for that we pass
   with NEXT_PUBLIC */
+  //TODO: Map don't render for some rease, get 404
+
   const MAPBOX_USERID = process.env.NEXT_PUBLIC_MAPBOX_USERID;
   const MAPBOX_STYLEID = process.env.NEXT_PUBLIC_MAPBOX_STYLEID;
-  // const MAPBOX_API_KEY = process.env.NEXT_PUBLIC_MAPBOX_API_KEY;
-  const MAPBOX_API_KEY = null;
+  const MAPBOX_API_KEY = process.env.NEXT_PUBLIC_MAPBOX_API_KEY;
 
   const router = useRouter();
 
-  const CustomTileLayer = () => {
-    return MAPBOX_API_KEY ? (
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">Mapbox</a> contributors'
-        url={`https://api.mapbox.com/styles/v1/${MAPBOX_USERID}/${MAPBOX_STYLEID}/tiles/256/{z}/{x}/{y}@2x?access_token=${MAPBOX_API_KEY}`}
-      />
-    ) : (
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-    );
-  };
+  const CustomTileLayer = () => (
+    // return MAPBOX_API_KEY ? (
+    //   <TileLayer
+    //     attribution='&copy; <a href="http://osm.org/copyright">Mapbox</a> contributors'
+    //     url={`https://api.mapbox.com/styles/v1/${MAPBOX_USERID}/${MAPBOX_STYLEID}/tiles/256/{z}/{x}/{y}@2x?access_token=${MAPBOX_API_KEY}`}
+    //   />
+    // ) : (
+    <TileLayer
+      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    />
+    // );
+  );
 
   return (
     <MapContainer
