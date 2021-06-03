@@ -15,6 +15,19 @@ export default function HomeTemplate({ artists }: MapProps) {
         title="Local Music"
         description="Um projeto que mostra os artista mais ouvidos das capitais brasileiras e suas informações."
         canonical="https://local-music.marcosnto.dev"
+        openGraph={{
+          url: 'https://local-music.marcosnto.dev',
+          title: 'Local Music',
+          description:
+            'Um projeto que mostra os artista mais ouvidos das capitais brasileiras e suas informações.',
+          // images: [{
+          //   url:
+          //   width:
+          //   height:
+          //   alt:
+          // }]
+          site_name: 'Local Music'
+        }}
       />
       <LinkWrapper href="/about">
         <InfoOutline size={32} aria-label="About" />

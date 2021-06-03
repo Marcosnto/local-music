@@ -1,3 +1,5 @@
+import { NextSeo } from 'next-seo';
+
 import Image from 'next/image';
 
 import LinkWrapper from 'components/LinkWrapper';
@@ -30,6 +32,24 @@ export default function ArtistTemplate({ artist }: ArtistTemplateProps) {
 
   return (
     <>
+      <NextSeo
+        title={`${artist.name}`}
+        description="Um projeto que mostra os artista mais ouvidos das capitais brasileiras e suas informações."
+        canonical="https://local-music.marcosnto.dev"
+        openGraph={{
+          url: 'https://local-music.marcosnto.dev',
+          title: 'Local Music',
+          description:
+            'Um projeto que mostra os artista mais ouvidos das capitais brasileiras e suas informações.',
+          // images: [{
+          //   url:
+          //   width:
+          //   height:
+          //   alt:
+          // }]
+          site_name: 'Local Music'
+        }}
+      />
       <LinkWrapper href="/">
         <CloseOutline size={32} aria-label="Go Back to map" />
       </LinkWrapper>
